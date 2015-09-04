@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hosts Files</title>
+	<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="account.js"></script>
+
+	<script type="text/javascript">
+		var ref = new Firebase('https://filehost.firebaseio.com')
+
+		function onFileChoose(){
+			var name = $('#filename').val()
+			var body = $('#filebody').val()
+			ref.child('user').child(username).child('files').push({'name':name, 'body':body})
+		}
+		function replacePeriods(email){
+		    return email.replace(/\./g,'*')
+		}
+	</script>
+</head>
+<body>
+	<b>register<b><br/>
+
+	username<br/>
+	<input type="text" name="username" id="regusername"><br/>
+
+	email <br/>
+	<input type="text" name="email" id="regemail"><br/>
+
+	password <br/>
+	<input type="password" name="password" id="regpassword"><br/>
+
+	<input type="button" onclick="createAccount()" value="register">
+
+	<input type="button" onclick="logout()" value="logout"><br/>
+
+	<b>login<b><br/>
+
+	email <br/>
+	<input type="text" name="username" id="loginusername"><br/>
+
+	password <br/>
+	<input type="password" name="password" id="loginpassword"><br/>
+
+	<input type="button" onclick="loginAction()" value="login"><br/>
+
+	<input type="text" name="file name" id="filename"><br/>
+
+
+	<input type="text" name="file body" id="filebody"><br/>
+	<input type="button" onclick="onFileChoose()" value="choose file">
+
+</body>
+</html>
