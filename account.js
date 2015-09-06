@@ -12,10 +12,10 @@ if(token == null){
 
 ref.authWithCustomToken(token, function(error, result) {
   if (error) {
-    console.log("No pre-existing token found");
+    console.log("No pre-existing token found1");
   } else {
     console.log(result)
-    console.log("Pre-existing token found");
+    console.log("Pre-existing token found1");
   }
 });
 
@@ -33,8 +33,9 @@ function createUser(email, password, user){
             console.log("Error creating user:", error);
         } else {
             console.log("Successfully created user account with uid:", userData.uid);
-            ref.child('user').child(user).set({
+            ref.child('user').child(userData.uid).set({
                 settings: {
+                    user:user,
                     email: email,
                     uid: userData.uid
                 }
